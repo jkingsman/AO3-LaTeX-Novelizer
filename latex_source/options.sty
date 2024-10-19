@@ -56,21 +56,18 @@
 
 % PAGINATION & HEADERS
 % Contents page
-\renewcommand{\@chapapp}{Work} % for if the title is displayed
+\renewcommand{\@chapapp}{} % empty chapter title
 \usepackage{tocloft}[titles]
 \renewcommand{\cftchapterpagefont}{\large\itshape}
 \renewcommand{\cftchapterpagefont}{\normalfont}
 \renewcommand{\numberline}[1]{}
 
 % chapter headings
-\renewcommand\thechapter{\arabic{chapter}}
+\renewcommand\thechapter{} % empty chapter number
 \usepackage[center,sc]{titlesec}
 \newcommand{\subsectionbreak}{\clearpage}
 
-% compress spacing and make big italic chapter headings
-\titleformat{\chapter}[display]
-{\centering\itshape}{}{10pt}{\Huge}
-\titlespacing*{\chapter}{0pt}{-60pt}{20pt}
+\titlespacing*{\chapter}{0pt}{-90pt}{20pt} % cram it way up on the page, pushing the now-invisible numbering off
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}

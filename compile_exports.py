@@ -87,6 +87,23 @@ def strip_notes():
         with open(latex_file, 'w') as latex_write_handle:
             latex_write_handle.write(totally_stripped)
 
+def convert_verbatim():
+    print("Converting verbatim blocks to lstlisting")
+    begin_verbatim = r"\\begin{verbatim}"
+    end_verbatim = r"\\end{verbatim}"
+
+    latex_files = glob.glob(os.path.join(EXPORTS_DIR, '*.tex'))
+    for latex_file in latex_files:
+        print(f"↳ Converting verbatims in {latex_file}")
+
+        with open(latex_file, 'r') as latex_read_handle:
+            file_contents = latex_read_handle.read()
+            converted_begin = re.sub(begin_verbatim, r'\\begin{lstlisting}', file_contents, flags=re.DOTALL)
+            converted_end = re.sub(end_verbatim, r'\\end{lstlisting}', converted_begin, flags=re.DOTALL)
+
+        with open(latex_file, 'w') as latex_write_handle:
+            latex_write_handle.write(converted_end)
+
 def copy_polished_latex_to_content_dir():
     # copy latex files over to content directory
     # we could just write the updated contents into place but it's neater to get them all out of the exports dir I think
@@ -151,6 +168,8 @@ if __name__ == '__main__':
     append_headers_and_strip_section_redeclaration()
     if os.environ.get("STRIP_NOTES", False):
         strip_notes()
+    if os.environ.get("CONVERT_VERBATIM", False):
+        convert_verbatim()
     copy_polished_latex_to_content_dir()
     inject_filenames_into_main_tex()
     update_copyright_and_authorship_data()

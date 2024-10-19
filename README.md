@@ -36,7 +36,7 @@ If you want to build locally, you'll need a LaTeX program capable of PDF output.
 
 If you want to customize the size and format for binding, you can find those settings in `options.sty`.
 
-Please pay attention to compilation warnings; as-is, you'll likely need some manual character shimming for anything non-ASCII. You may want to use XeLaTeX for better Unicode compatibility.
+Please pay attention to compilation warnings; as-is, you'll likely need some manual character shimming for anything non-ASCII in PDFTeX. You may want to use XeLaTeX for better Unicode compatibility.
 
 ## Experimental Flags
 You may set these experimental environment variables.

@@ -24,7 +24,7 @@ This tool runs best on *nix systems such as Linux or Mac OS. This tool has not b
 
     When you run the script, you should see descriptive output as it works through each step.
 
-If you want to reorder the works, open `latex_source/main.tex` afer running the `compile_exports` script and move around the `\include{}` directives after `%% FILE CONTENTS START %%`.
+If you want to reorder the works, open `latex_source/main.tex` afer running the `compile_exports` script and move around the `\input{}` directives after `%% FILE CONTENTS START %%`.
 
 ## Next Steps
 
@@ -33,6 +33,8 @@ If you want to reorder the works, open `latex_source/main.tex` afer running the 
 In order to convert to PDF, you can use a website like Overleaf to upload a ZIP file containing the `latex_source` directory.
 
 If you want to build locally, you'll need a LaTeX program capable of PDF output. Finding, installing, and using those is beyond the scope of this README, I'm sorry.
+
+If you want to customize the size and format for binding, you can find those settings in `options.sty`.
 
 # What about non-AO3 HTML?
 Generally, this tool is specifically meant to work on AO3 HTML exports, but there's technically not a reason it can't work on other HTML -- as long as Pandoc can eat it, it should convert. You may get errors about not finding chapter titles; any manipulation of the generic output will be up to you in terms of establishing a chapter structure from Pandoc's file fragments.

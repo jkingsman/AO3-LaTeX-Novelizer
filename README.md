@@ -36,6 +36,8 @@ If you want to build locally, you'll need a LaTeX program capable of PDF output.
 
 If you want to customize the size and format for binding, you can find those settings in `options.sty`.
 
+Please pay attention to compilation warnings; as-is, you'll likely need some manual character shimming for anything non-ASCII.
+
 # What about non-AO3 HTML?
 Generally, this tool is specifically meant to work on AO3 HTML exports, but there's technically not a reason it can't work on other HTML -- as long as Pandoc can eat it, it should convert. You may get errors about not finding chapter titles; any manipulation of the generic output will be up to you in terms of establishing a chapter structure from Pandoc's file fragments.
 

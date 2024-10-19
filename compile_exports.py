@@ -135,6 +135,7 @@ def update_copyright_and_authorship_data():
 if __name__ == '__main__':
     sanity_check()
     dump_html_to_latex()
+    append_headers_and_strip_section_redeclaration()
     copy_polished_latex_to_content_dir()
     inject_filenames_into_main_tex()
     update_copyright_and_authorship_data()

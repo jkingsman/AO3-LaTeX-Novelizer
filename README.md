@@ -44,6 +44,8 @@ You may set these experimental environment variables.
 `STRIP_NOTES`: strip out summaries and notes. Experimental and janky.
 `CONVERT_VERBATIM`: convert `\begin{verbatim}` blocks into `\begin{lstlisting}` blocks to prevent line-break (or lack thereof) issues with `<code>` blocks converted to the non-wrapping `verbatim`.
 
+e.g. `[...] STRIP_NOTES=y CONVERT_VERBATIM=y ./compile_exports.py`
+
 # What about non-AO3 HTML?
 Generally, this tool is specifically meant to work on AO3 HTML exports, but there's technically not a reason it can't work on other HTML -- as long as Pandoc can eat it, it should convert. You may get errors about not finding chapter titles; any manipulation of the generic output will be up to you in terms of establishing a chapter structure from Pandoc's file fragments.
 

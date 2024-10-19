@@ -1,4 +1,4 @@
-% Change notices: Eliminating "Chapter" header and including subsections on pages; retitling Chapters as "Works"
+% Change notices: Eliminating "Chapter" header and including subsections on pages; retitling Chapters as "Works"; eliminating color and image defintions
 
 %\documentclass[12pt,extrafontsizes,twoside,onecolumn,openany,]{memoir}
 
@@ -54,17 +54,6 @@
 
 \checkandfixthelayout
 
-% FANCY BREAKS
-% Redefine the \fancybreak command to center the images
-\renewcommand{\fancybreak}{%
-  \makebox[\textwidth]{%
-    \includegraphics[width=.75cm]{images/frying_pan.png}%
-    \includegraphics[width=.75cm]{images/frying_pan.png}%
-    \includegraphics[width=.75cm]{images/frying_pan.png}%
-  }%
-}
-% Add new image to change fancy breaks
-
 % PAGINATION & HEADERS
 % Contents page
 \renewcommand{\@chapapp}{Work}
@@ -93,40 +82,9 @@
 \renewcommand{\headrulewidth}{0pt}      % remove header rule
 \renewcommand*{\headwidth}{\hsize}
 
-% Define Chapter Art
-\usepackage{tikz}
-\usetikzlibrary{calc}
-\usepackage{tikzpagenodes}
-\usepackage{ifoddpage}
-
-% Chapter art
-\newcommand{\chapterart}{
-  \begin{tikzpicture}[remember picture,overlay]
-    \node[anchor=north, yshift=-.5cm] at (current page header area.north)
-    {\includegraphics[width=4.25cm]{images/TWI CH.png}};
-  \end{tikzpicture}
-}
-% Adjust placement as needed
-
 % Footnotes
 \usepackage{perpage}    % Load the perpage package
 \MakePerPage{footnote}  % Reset footnote number every page
-
-% COLORED & HIDDEN TEXT
-\usepackage{xcolor}%[dvipsnames]
-\definecolor{f1a1ff}{cmyk}{0.05, 0.37, 0, 0}    % Magnolia's Pink
-\definecolor{ff0000}{cmyk}{0,1,1,0}             % Sound Effect "Crunch"
-\definecolor{99cc00}{cmyk}{0.25,0,1,0.20}       % Immortal Moment Skill
-\definecolor{ff00ff}{cmyk}{0,1,0,0}             % Magnolia pink #2
-\definecolor{9FC5E8}{cmyk}{0.31,0.15,0,0.09}    % Ryoka thought (blue)
-\definecolor{B6D7A8}{cmyk}{0.15,0,0.22,0.16}    % Ryoka thought (green)
-\definecolor{EA9999}{cmyk}{0,0.35,0.35,0.08}    % Ryoka thought (red)
-\definecolor{C27BA0}{cmyk}{0,0.37,0.18,0.24}    % Ryoka's been spelled
-\definecolor{E69138}{cmyk}{0,0.37,0.76,0.10}    % Command Skill
-\definecolor{F3F6F4}{cmyk}{0.01,0,0.01,0.04}    % Hidden text #1
-\definecolor{EEEEEE}{cmyk}{0,0,0,0.07}          % Hidden text #2
-
-\usepackage{regexpatch} % for text replacement
 
 % layout check and fix
 \checkandfixthelayout

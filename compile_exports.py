@@ -59,19 +59,33 @@ def append_headers_and_strip_section_redeclaration():
     section_redeclaration = r"\\section{.*?by.*?\n\n"
     for latex_file in converted_latex_files:
         print(f"↳ Appending chapter header + stripping section title for {latex_file}")
-        with open(latex_file) as latex_handle:
-            matches = re.findall(chapter_header, latex_handle.read(), flags=re.DOTALL)
+        with open(latex_file, 'r') as latex_handle:
+            file_contents = latex_handle.read()
+            matches = re.findall(chapter_header, file_contents, flags=re.DOTALL)
             if len(matches) != 1:
                 print(f"❌ Zero or multiple matches extracted for {latex_file} -- I need one and only one title/chapter header. Matches are: '{matches}'")
                 print("This file will not have the expected chapter structure.")
+            substituted_tex_contents = re.sub(section_redeclaration, '', file_contents, flags=re.DOTALL)
 
-        # yay! we got a good capture; reopen the file and write it with the header
+        with open(latex_file, 'w') as latex_write_handle:
+            latex_write_handle.write(f"\\chapter{{{matches[0]}}}\n" + substituted_tex_contents)
+
+def strip_notes():
+    print("Stripping pre- and post-work notes + summary")
+    notes_and_summary = r"\\end{description}(.*?)\\phantomsection\\label{chapters}"
+    afterword = r"\\subsection{Afterword}.*"
+
+    latex_files = glob.glob(os.path.join(EXPORTS_DIR, '*.tex'))
+    for latex_file in latex_files:
+        print(f"↳ Stripping {latex_file}")
+
         with open(latex_file, 'r') as latex_read_handle:
-            substituted_tex_contents = re.sub(section_redeclaration, '', latex_read_handle.read(), flags=re.DOTALL)
+            file_contents = latex_read_handle.read()
+            stripped_pre_notes_and_summary = re.sub(notes_and_summary, r'\\end{description}\\phantomsection\\label{chapters}', file_contents, flags=re.DOTALL)
+            totally_stripped = re.sub(afterword, '', stripped_pre_notes_and_summary, flags=re.DOTALL)
 
-            # naughty double handles here! but easy way to prepend our chapter header
-            with open(latex_file, 'w') as latex_write_handle:
-                latex_write_handle.write(f"\\chapter{{{matches[0]}}}\n" + substituted_tex_contents)
+        with open(latex_file, 'w') as latex_write_handle:
+            latex_write_handle.write(totally_stripped)
 
 def copy_polished_latex_to_content_dir():
     # copy latex files over to content directory
@@ -95,9 +109,8 @@ def inject_filenames_into_main_tex():
         # this is a stupid hack with the lambda to prevent python regex from thinking that the backslashes etc. in the tex are RE directives
         substituted_contents_block = re.sub(file_contents_regex, lambda _: replacement_block, main_tex_read_handle.read(), flags=re.DOTALL)
 
-        # more naughty double handles
-        with open(MAIN_TEX_FILE, 'w') as latex_write_handle:
-            latex_write_handle.write(substituted_contents_block)
+    with open(MAIN_TEX_FILE, 'w') as latex_write_handle:
+        latex_write_handle.write(substituted_contents_block)
 
 def update_copyright_and_authorship_data():
     with open(MAIN_TEX_FILE, 'r') as main_tex_read_handle:
@@ -136,6 +149,8 @@ if __name__ == '__main__':
     sanity_check()
     dump_html_to_latex()
     append_headers_and_strip_section_redeclaration()
+    if os.environ.get("STRIP_NOTES", False):
+        strip_notes()
     copy_polished_latex_to_content_dir()
     inject_filenames_into_main_tex()
     update_copyright_and_authorship_data()

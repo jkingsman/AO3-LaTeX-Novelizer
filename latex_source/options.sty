@@ -1,4 +1,4 @@
-% Change notices: Eliminating "Chapter" header and including subsections on pages; retitling Chapters as "Works"; eliminating color, image, and unused package defintions
+% Change notices: Eliminating "Chapter" header and including subsections on pages; retitling Chapters as "Works" and alterting chapter heading display; eliminating color, image, and unused package defintions
 
 %\documentclass[12pt,extrafontsizes,twoside,onecolumn,openany,]{memoir}
 
@@ -67,8 +67,9 @@
 \usepackage[center,sc]{titlesec}
 \newcommand{\subsectionbreak}{\clearpage}
 
+% compress spacing and make big italic chapter headings
 \titleformat{\chapter}[display]
-{\centering\normalfont\huge\bfseries}{}{10pt}{\Huge}
+{\centering\itshape}{}{10pt}{\Huge}
 \titlespacing*{\chapter}{0pt}{-60pt}{20pt}
 
 \usepackage{fancyhdr}

@@ -46,6 +46,35 @@ You may set these experimental environment variables.
 
 e.g. `[...] STRIP_NOTES=y CONVERT_VERBATIM=y ./compile_exports.py`
 
+
+## Example Invocation
+
+```bash
+export NOVELIZER_AUTHORNAME="Da Great Author"
+export NOVELIZER_BOOKTITLE="Collected Words"
+export NOVELIZER_SUBTITLE="AO3 Works, 2014-2018"
+export NOVELIZER_YEAR="2024"
+export NOVELIZER_COPYRIGHT="The author disclaims all copyright."
+export STRIP_NOTES=y # if you don't want summaries or author's notes
+export CONVERT_VERBATIM=y # if you have blocks of <code> that you want to line wrap instead of run off the page
+./compile_exports.py
+```
+
+If you had `XeLaTeX` installed, you might then run
+
+```bash
+cd latex_source/
+
+# run as many times as you have to for XeLaTeX to converge on layout, generate a ToC, etc.
+xelatex.exe -synctex=1 -interaction=nonstopmode main.tex
+xelatex.exe -synctex=1 -interaction=nonstopmode main.tex
+xelatex.exe -synctex=1 -interaction=nonstopmode main.tex
+xelatex.exe -synctex=1 -interaction=nonstopmode main.tex
+xelatex.exe -synctex=1 -interaction=nonstopmode main.tex
+```
+
+And then retrieve `main.pdf`.
+
 # What about non-AO3 HTML?
 Generally, this tool is specifically meant to work on AO3 HTML exports, but there's technically not a reason it can't work on other HTML -- as long as Pandoc can eat it, it should convert. You may get errors about not finding chapter titles; any manipulation of the generic output will be up to you in terms of establishing a chapter structure from Pandoc's file fragments.
 

@@ -1,10 +1,18 @@
-% Change notices: Removal of author's note; customization of included content; tightening of frontmatter; removal of microtype.sty inclusion, removal of lipsum package; removal of volume list
+% Change notices: Removal of author's note; customization of included content; tightening of frontmatter; removal of microtype.sty inclusion, removal of lipsum package; removal of volume list; add listings for verbatim replacement
 
 % universal settings
 \documentclass[12pt,twoside,onecolumn,openany,extrafontsizes,dvipsnames]{memoir}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+
+% neater verbatim alternative
+\usepackage{listings}
+\lstset{
+	basicstyle=\small\ttfamily,
+	columns=flexible,
+	breaklines=true
+}
 
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}

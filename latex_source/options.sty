@@ -1,0 +1,132 @@
+% Change notices: Eliminating "Chapter" header and including subsections on pages; retitling Chapters as "Works"
+
+%\documentclass[12pt,extrafontsizes,twoside,onecolumn,openany,]{memoir}
+
+% PACKAGES
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}   % Better typography
+
+\usepackage{lettrine}   % for drop caps and awesome chapter beginnings
+\usepackage{graphicx}   % Required for inserting images
+\usepackage{gensymb}    % Required for degree symbol
+\usepackage{CJK}        % Japanese Characters
+\usepackage[symbol]{footmisc}   % Set footnotes to use symbols
+\usepackage{fnbreak}    % Generates a footnotebreak warning
+\usepackage{etoolbox}
+\usepackage{geometry}
+\usepackage{textcomp}
+
+
+% STOCK/MEDIA SETTINGS
+% Set paper size {height}{width}
+\setstocksize{9in}{6in}
+
+% Set trim size (same as stock size for no trimming)
+\settrimmedsize{\stockheight}{\stockwidth}{*}
+
+% Set type block size (adjust margins to your preference)
+%\setlrmarginsandblock{left}{right}{ratio}
+\setlrmarginsandblock{.75in}{.625in}{*}
+%\setulmarginsandblock{top}{bottom}{ratio}
+\setulmarginsandblock{.75in}{.75in}{*}
+\checkandfixthelayout
+% If page numbers are getting cut off adjust margins!
+
+% TEXT & FONTS
+% TYPOGRAPHY
+\usepackage{ebgaramond}     % Garamond Font
+\usepackage{CJK}            % Japanese Characters
+
+\newcommand{\hsp}{\kern 1pt}    % for nested quotation marks
+% Allow paragraphs to breathe by spreading the lines further
+\renewcommand{\baselinestretch}{1.125}
+\setlength{\parskip}{0pt}       % Fixed space between paragraphs
+\setlength{\parindent}{1em}
+
+% Don’t add extra space after sentences
+\frenchspacing
+
+% Reduce Overfull Lines & Sloppy Bottom (not like that perv!)
+\sloppy
+
+\clubpenalty=10000
+\widowpenalty=10000
+\raggedbottom
+
+\checkandfixthelayout
+
+% FANCY BREAKS
+% Redefine the \fancybreak command to center the images
+\renewcommand{\fancybreak}{%
+  \makebox[\textwidth]{%
+    \includegraphics[width=.75cm]{images/frying_pan.png}%
+    \includegraphics[width=.75cm]{images/frying_pan.png}%
+    \includegraphics[width=.75cm]{images/frying_pan.png}%
+  }%
+}
+% Add new image to change fancy breaks
+
+% PAGINATION & HEADERS
+% Contents page
+\renewcommand{\@chapapp}{Work}
+\usepackage{tocloft}[titles]
+\renewcommand{\cftchapterpagefont}{\large\itshape}
+\renewcommand{\cftchapterpagefont}{\normalfont}
+\renewcommand{\numberline}[1]{}
+
+% chapter headings
+\renewcommand\thechapter{\arabic{chapter}}
+\usepackage[center,sc]{titlesec}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+% Set page numbers in the header
+\fancyhead[LE,RO]{\thepage}
+
+\fancyhead[CE]{\nouppercase{\textit{\leftmark}}} %puts chapter title on even page in lower-case italics
+\fancyhead[CO]{\nouppercase{\textit{\rightmark}}} %puts section title on odd page in lower-case italics
+\renewcommand{\headrulewidth}{0pt} %gets rid of line
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}} %gets rid of chapter number
+\renewcommand{\subsectionmark}[1]{\markright{#1}} %gets rid of section number
+
+\renewcommand{\headrulewidth}{0pt}      % remove header rule
+\renewcommand*{\headwidth}{\hsize}
+
+% Define Chapter Art
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{tikzpagenodes}
+\usepackage{ifoddpage}
+
+% Chapter art
+\newcommand{\chapterart}{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north, yshift=-.5cm] at (current page header area.north)
+    {\includegraphics[width=4.25cm]{images/TWI CH.png}};
+  \end{tikzpicture}
+}
+% Adjust placement as needed
+
+% Footnotes
+\usepackage{perpage}    % Load the perpage package
+\MakePerPage{footnote}  % Reset footnote number every page
+
+% COLORED & HIDDEN TEXT
+\usepackage{xcolor}%[dvipsnames]
+\definecolor{f1a1ff}{cmyk}{0.05, 0.37, 0, 0}    % Magnolia's Pink
+\definecolor{ff0000}{cmyk}{0,1,1,0}             % Sound Effect "Crunch"
+\definecolor{99cc00}{cmyk}{0.25,0,1,0.20}       % Immortal Moment Skill
+\definecolor{ff00ff}{cmyk}{0,1,0,0}             % Magnolia pink #2
+\definecolor{9FC5E8}{cmyk}{0.31,0.15,0,0.09}    % Ryoka thought (blue)
+\definecolor{B6D7A8}{cmyk}{0.15,0,0.22,0.16}    % Ryoka thought (green)
+\definecolor{EA9999}{cmyk}{0,0.35,0.35,0.08}    % Ryoka thought (red)
+\definecolor{C27BA0}{cmyk}{0,0.37,0.18,0.24}    % Ryoka's been spelled
+\definecolor{E69138}{cmyk}{0,0.37,0.76,0.10}    % Command Skill
+\definecolor{F3F6F4}{cmyk}{0.01,0,0.01,0.04}    % Hidden text #1
+\definecolor{EEEEEE}{cmyk}{0,0,0,0.07}          % Hidden text #2
+
+\usepackage{regexpatch} % for text replacement
+
+% layout check and fix
+\checkandfixthelayout

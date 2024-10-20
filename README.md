@@ -9,9 +9,7 @@ This tool runs best on *nix systems such as Linux or Mac OS. This tool has not b
 # Loading AO3 Exports
 
 1. Ensure you have a modern (3.10+) `python` installation and `pandoc` on your path. This tool was developed for `pandoc 3.41`, but has been tested to work fine with `pandoc 3.5`. Install pandoc [here](https://pandoc.org/installing.html).
-
 1. Place regular AO3 "Download" -> "HTML" exports into the `html_exports` directory.
-
 1. Run the `./compile_exports.py` script to invoke `pandoc` and perform a bulk conversion of your exported HTML into LaTeX and subsequent import of those TeX files into the `latex_source` LaTeX project. Note that you need to prefix the script with environment variables to describe your work! These are:
     * `NOVELIZER_AUTHORNAME`
     * `NOVELIZER_BOOKTITLE`
@@ -26,7 +24,7 @@ This tool runs best on *nix systems such as Linux or Mac OS. This tool has not b
 
     When you run the script, you should see descriptive output as it works through each step.
 
-If you want to reorder the works, open `latex_source/main.tex` afer running the `compile_exports` script and move around the `\input{}` directives after `%% FILE CONTENTS START %%`.
+If you want to reorder the works, open `latex_source/main.tex` after running the `compile_exports` script and move around the `\input{}` directives after `%% FILE CONTENTS START %%`.
 
 ## Next Steps
 
@@ -40,11 +38,13 @@ If you want to customize the size and format for binding, you can find those set
 
 Please pay attention to compilation warnings; as-is, you'll likely need some manual character shimming for anything non-ASCII in PDFTeX. You may want to use XeLaTeX for better Unicode compatibility.
 
+Duplicate label errors are a side effect of Pandoc conversion and can be safely ignored.
+
 ## Experimental Flags
 You may set these experimental environment variables.
 
-`STRIP_NOTES`: strip out summaries and notes. Experimental and janky.
-`CONVERT_VERBATIM`: convert `\begin{verbatim}` blocks into `\begin{lstlisting}` blocks to prevent line-break (or lack thereof) issues with `<code>` blocks converted to the non-wrapping `verbatim`.
+* `STRIP_NOTES`: strip out summaries and notes. Experimental and janky.
+* `CONVERT_VERBATIM`: convert `\begin{verbatim}` blocks into `\begin{lstlisting}` blocks to prevent line-break (or lack thereof) issues with `<code>` blocks converted to the non-wrapping `verbatim`.
 
 e.g. `[...] STRIP_NOTES=y CONVERT_VERBATIM=y ./compile_exports.py`
 

@@ -8,9 +8,11 @@ This tool runs best on *nix systems such as Linux or Mac OS. This tool has not b
 
 # Loading AO3 Exports
 
-0. Place regular AO3 "Download" -> "HTML" exports into the `html_exports` directory.
-1. Ensure you have a modern (3.10+) `python` installation and `pandoc` on your path. This tool was developed for `pandoc` 3.4, but should work with most versions.
-2. Run the script to invoke `pandoc` and perform a bulk conversion of your exported HTML into LaTeX, adding them into the `latex_source` LaTeX project. Note that you need to prefix the script with environment variables to describe your work! These are:
+1. Ensure you have a modern (3.10+) `python` installation and `pandoc` on your path. This tool was developed for `pandoc 3.41`, but has been tested to work fine with `pandoc 3.5`. Install pandoc [here](https://pandoc.org/installing.html).
+
+1. Place regular AO3 "Download" -> "HTML" exports into the `html_exports` directory.
+
+1. Run the `./compile_exports.py` script to invoke `pandoc` and perform a bulk conversion of your exported HTML into LaTeX and subsequent import of those TeX files into the `latex_source` LaTeX project. Note that you need to prefix the script with environment variables to describe your work! These are:
     * `NOVELIZER_AUTHORNAME`
     * `NOVELIZER_BOOKTITLE`
     * `NOVELIZER_SUBTITLE`
@@ -66,11 +68,10 @@ If you had `XeLaTeX` installed, you might then run
 cd latex_source/
 
 # run as many times as you have to for XeLaTeX to converge on layout, generate a ToC, etc.
-xelatex.exe -synctex=1 -interaction=nonstopmode main.tex
-xelatex.exe -synctex=1 -interaction=nonstopmode main.tex
-xelatex.exe -synctex=1 -interaction=nonstopmode main.tex
-xelatex.exe -synctex=1 -interaction=nonstopmode main.tex
-xelatex.exe -synctex=1 -interaction=nonstopmode main.tex
+xelatex -interaction=nonstopmode main.tex
+xelatex -interaction=nonstopmode main.tex
+xelatex -interaction=nonstopmode main.tex
+xelatex -interaction=nonstopmode main.tex
 ```
 
 And then retrieve `main.pdf`.

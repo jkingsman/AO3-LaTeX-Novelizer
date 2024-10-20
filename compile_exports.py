@@ -108,8 +108,8 @@ def copy_polished_latex_to_content_dir():
     # copy latex files over to content directory
     # we could just write the updated contents into place but it's neater to get them all out of the exports dir I think
     for latex_file in glob.glob(os.path.join(EXPORTS_DIR, '*.tex')):
-        print(f"Copying {latex_file} to {CONTENT_DIR}")
-        shutil.copy(latex_file, CONTENT_DIR)
+        print(f"Moving {latex_file} to {CONTENT_DIR}")
+        shutil.move(latex_file, CONTENT_DIR)
 
 def inject_filenames_into_main_tex():
     file_contents_regex = rf"{MAIN_TEX_CONTENTS_START_MARKER}.*{MAIN_TEX_CONTENTS_END_MARKER}"

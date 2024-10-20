@@ -24,7 +24,7 @@ This tool runs best on *nix systems such as Linux or Mac OS. This tool has not b
 
     When you run the script, you should see descriptive output as it works through each step.
 
-If you want to reorder the works, open `latex_source/main.tex` afer running the `compile_exports` script and move around the `\input{}` directives after `%% FILE CONTENTS START %%`.
+If you want to reorder the works, open `latex_source/main.tex` after running the `compile_exports` script and move around the `\input{}` directives after `%% FILE CONTENTS START %%`.
 
 ## Next Steps
 
@@ -42,6 +42,7 @@ Please pay attention to compilation warnings; as-is, you'll likely need some man
 You may set these experimental environment variables.
 
 `STRIP_NOTES`: strip out summaries and notes. Experimental and janky.
+
 `CONVERT_VERBATIM`: convert `\begin{verbatim}` blocks into `\begin{lstlisting}` blocks to prevent line-break (or lack thereof) issues with `<code>` blocks converted to the non-wrapping `verbatim`.
 
 e.g. `[...] STRIP_NOTES=y CONVERT_VERBATIM=y ./compile_exports.py`

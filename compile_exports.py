@@ -107,6 +107,12 @@ def convert_verbatim():
 def copy_polished_latex_to_content_dir():
     # copy latex files over to content directory
     # we could just write the updated contents into place but it's neater to get them all out of the exports dir I think
+
+    # first, empty all tex files from the content dir
+    for latex_file in glob.glob(os.path.join(CONTENT_DIR, '*.tex')):
+        print(f"Deleting stale {latex_file}")
+        os.remove(latex_file)
+
     for latex_file in glob.glob(os.path.join(EXPORTS_DIR, '*.tex')):
         print(f"Moving {latex_file} to {CONTENT_DIR}")
         shutil.move(latex_file, CONTENT_DIR)

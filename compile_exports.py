@@ -33,7 +33,7 @@ def sanity_check():
     # check exports dir HTML presence
     print("Checking to see if there are files in exports dir...")
     files_in_exports_dir = glob.glob(os.path.join(EXPORTS_DIR, "*.html"))
-    if len(files_in_exports_dir) > 1:
+    if len(files_in_exports_dir) > 0:
         print(f"✅ Found {len(files_in_exports_dir)} HTML files to convert!")
         print("Files queued for inclusion:")
         for file in files_in_exports_dir:
